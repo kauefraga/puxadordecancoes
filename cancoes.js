@@ -1,0 +1,86 @@
+const cancoes = [
+  {
+    id: 1,
+    title: 'Demônios Camuflados Surgem da Escuridão',
+    tags: ['exército brasileiro'],
+    lyrics: `Demônios\nDemônios\nDemônios camuflados surgem da escuridão\nCorpos ensanguentados espalhados pelo chão\n\nQuer saber da onde eu venho?\nOu qual é minha missão?\nTrago a morte e o desespero\nA total destruição\n\nNo cordel, uma granada\nAcionadores de tração\nQuem vier atrás de mim\nSó vai ouvir a explosão\n\nPA PUM, O RAIO CAIU\nIA HA HA E A CAVEIRA SORRIU`,
+  },
+  {
+    id: 2,
+    title: 'Aonde Quer Que Vamos',
+    tags: ['TFM', 'exército brasileiro'],
+    lyrics: `Por onde quer que vamos\nTodos querem saber\nQuem somos nós\nDe onde viemos\nA eles diremos\nNós somos do TG\nE lá é um batalhão\nDe muita vibração\nEntendeu, meu irmão?\nNão bota a cara, não\nSe não tiver me ouvindo\nEu canto bem mais alto\nMais alto!\nMuito mais alto!\n\nAonde quer que vamos\nTodos querem saber\nQuem somos nós\nDe onde viemos\nA eles diremos\nNós somos do TG\nE lá é um batalhão\nDe muita vibração\nOuviu, meu irmão?\nNão bota a cara, não\nSe não tiver me ouvindo\nEu canto mais alto\nMais alto!\nMuito mais alto!`,
+  },
+  {
+    id: 3,
+    title: 'Fui Chamado Para Guerrear',
+    tags: ['TFM', 'selva', 'exército brasileiro'],
+    lyrics: `Fui chamado pra guerrear\nMas, na hora H, quem diria?\nO meu fuzil resolveu falhar\nCom a faca entre os dentes, a ordem era matar\nA pele do inimigo eu pus no mastro da bandeira\nPor isso eu sou chamado de faca na caveira\n\nÉ faca\nÉ faca\nÉ faca na caveira\nPatrulha\nPatrulha\nPatrulha a noite inteira\nNa selva\nNas guerras\nNo Mendanha e Madureira\nEscutem\nEscutem\nA risada da caveira\nIaháhá!\nIaháháhá!\nIaháhá!\nIaháháhá!`,
+  },
+  {
+    id: 4,
+    title: 'Olhar de Psico, Ladrão Logo Treme',
+    tags: ['TFM', 'ROTAM', 'polícia militar'],
+    lyrics: `Guiado por Deus, ninguém me segura\nGuiado por Deus, ninguém me segura\nFuzil na mão e a pistola na cintura\nFuzil na mão e a pistola na cintura\n\nSe subo favela é pra ganhar\nSe subo favela é pra ganhar\nDe clava na cara pro bicho gelar\nDe clava na cara pro bicho gelar\n\nOlhar de psico, ladrão logo treme\nOlhar de psico, ladrão logo treme\nQuem desce é a ceto, a barril da PM\nQuem desce é a ceto, a barril da PM\n\nA ceto é barril, a ceto é barril\nA ceto é barril, a ceto é barril\nCajado que passa e causa arrepio!\nCajado que passa e causa arrepio!`,
+  },
+  {
+    id: 5,
+    title: 'Quando Eu Morrer, Quero Ir de FAL e de Beretta',
+    tags: ['TFM', 'infantaria', 'exército brasileiro'],
+    lyrics: `Quando eu morrer, quero ir de FAL e de Beretta\nChegar no inferno e dar um tiro no capeta\nE o capeta vai gritar, desesperado\nMeu Deus do céu, tira daqui esse soldado!\n\nQuando eu morrer, quero meu último desejo\nSer enterrado numa pista de rastejo\nE o coveiro tem que ser um bom guerreiro\nAbrir a minha cova com granadas e morteiros\n\nE a menina que por mim não choraria\nAssobiava a canção da infantaria\nInfantaria Brasil!`,
+  },
+  {
+    id: 6,
+    title: 'Ei, Você, Seu Acochambrador',
+    tags: ['TFM'],
+    lyrics: `Ei, você, seu acochambrador\nPrepare sua carcaça, pois você vai sentir dor\nEi, você que não tem energia\nAprenda a vibrar com a minha companhia\nEi, você, que não tem vibração\nAprenda a vibrar com essa guarnição\nVibra que não dói\nCaga pra carcaça\nSoldado que não vibra é um esqueleto que se arrasta`,
+  },
+  {
+    id: 7,
+    title: 'Eu Quero Ver Você Ralar',
+    tags: ['TFM', 'cabo', 'sargento'],
+    lyrics: `Eu quero ver\nVocê ralar\nIgual a mim\nChegar aqui\nOnde eu cheguei\nContinuar\nA ralar\nA vibrar\n\nSe eu tô aqui\nPorque eu sou bom\nEu mereci\nEu batalhei\nDesemboquei\nVárias missões\n\nSó os bons, vejam vocês\nSó os bons, não há quem discorde\nUsarei uma divisa de cabo no uniforme\nUsarei uma divisa de sargento no uniforme`,
+  },
+  {
+    id: 8,
+    title: 'Olha a Onça Dele No Chapéu',
+    tags: ['TFM', 'selva'],
+    lyrics: `Olha a onça dele no chapéu\nOlha que essa onça é o seu troféu\nOlha que essa onça não é fácil de se ter\nTem que ralar\nTem que sofrer\n\nEu quero essa onça, essa onça como eu quero\nEu quero essa onça no meu gorro em amarelo\n\nOnça-pintada, quem foi que te pintou?\nFoi um guerreiro louco, louco como eu sou\nOnça-pintada na Terra ou no Céu\nPresa em meu peito serás meu troféu\n\nSelva, Selva\nÔ lugar bom de se morar\nCarapanã pra todo lado\nE borrachudos a picar`,
+  },
+  {
+    id: 9,
+    title: 'Eu Sou Aquele Que Você Jamais Será',
+    tags: ['TFM'],
+    lyrics: `Você que olha pra mim\nVocê que olha pra mim\nTem inveja de mim\nTem inveja de mim\nTem inveja de mim\nTem inveja de mim\n\nEu sou aquele que você não pode ser\nEu sou aquele que você não pode ser\nEu sou aquele que você jamais será\nEu sou aquele que você jamais será\nVem pra Quarta Cia, nosso lema é vibrar\nVem pra Quarta Cia, nosso lema é vibrar\n\nSe a sua moral é fraca\nSe a sua moral é fraca\nFácil de corromper\nFácil de corromper\nO seu olhar de pavor\nO seu olhar de pavor\nMe enche de prazer\nMe enche de prazer\n\nVocê que olha pra mim\nVocê que olha pra mim\nTem inveja de mim\nTem inveja de mim\nTem inveja de mim\nTem inveja de mim\n\nEu sou aquele que você não pode ser\nEu sou aquele que você não pode ser\nEu sou aquele que você jamais será\nEu sou aquele que você jamais será\nVem pra Quarta Cia, nosso lema é vibrar\nVem pra Quarta Cia, nosso lema é vibrar\n\nSe a sua moral é fraca\nSe a sua moral é fraca\nFácil de corromper\nFácil de corromper\nO seu olhar de pavor\nO seu olhar de pavor\nMe enche de prazer\nMe enche de prazer`,
+  },
+  {
+    id: 10,
+    title: 'Faço Parte de Uma Tropa',
+    tags: ['TFM', 'infantaria'],
+    lyrics: `Faço parte de uma tropa\nQue tem fibra e moral\nDisciplina elevada\nÉ tropa operacional\nNão tem medo do inimigos\nNem do fogo da metralha\nQuando entra em combate\nO inimigo estraçalha\n\nSomos homens da mochila\nCapacete e cantil\nA nossa força combativa\nEstá na ponta do fuzil\n\nSomos fogo em movimento\nE no combate aproximado\nNós faremos o inimigo\nPedir perdão por seus pecados\nPedir perdão ajoelhado`,
+  },
+  {
+    id: 11,
+    title: 'Guerreiro de Caatinga',
+    tags: ['caatinga', 'infantaria', 'exército brasileiro'],
+    lyrics: `Sob o Sol forte do meu sertão\nSurge um combatente com o fuzil na mão\nUniforme bem adaptado\nGuerreiro de caatinga é combatente preparado\n\nEnfrentando as ardúrias do tempo\nPrepara-se no batalhão sertão\nEsse guerreiro pertence a rainha\nÉ caatinga é infantaria\n\nA tropa\nA tropa\nA tropa\nAvança\nAvança\n\nEnquanto o bicho berra\nÉ Deus\nNo céu\nE o Infante aqui na terra\n\nE os corpos\nE os corpos\nCaídos\nRentes ao chão\nEsse é o ponto de confirmação\n\nE muitos pensam\nQue é brincadeira\nQuando falamos\nO que passamos\nMas só estando\nNessa carcaça\nPra saber\nO que eu sou\nEu sou um combatente audaz`,
+  },
+  {
+    id: 12,
+    title: 'Piscina de Sangue',
+    tags: ['TFM'],
+    lyrics: `Quero banhar-me\nNuma piscina\nCheia de sangue\nÉ sangue do inimigo\n\nEsse sangue é muito bom\nEu já provei\nNão há perigo\nÉ melhor do que café\nÉ o sangue do inimigo\n\nSó com o sangue do inimigo\nEu não vou me contentar\nQuero a cabeça dele\nNo meu prato de jantar`,
+  },
+  {
+    id: 13,
+    title: 'Se Comandos Você Quer Ser',
+    tags: ['comandos', 'forças especiais', 'exército brasileiro'],
+    lyrics: `Mochila\nPesada\nO FAL\nGranada\nA noite\nEscura\nA água\nGelada\nO gorro\nÉ negro\nO curso\nComandos\nComandos\n\nSe comandos você quer ser\nOuçam bem o que eu vou dizer\nOusar lutar, querer vencer\nEsse é o lema que há de ser\n\nQuando o frio for intenso\nOu o calor for de matar\nNão se esqueça um só momento\nQue os comandos nunca podem parar`,
+  },
+  {
+    id: 14,
+    title: 'Vitória Sobre a Morte',
+    tags: ['caatinga', 'infantaria'],
+    lyrics: `Vitória Sobre a Morte\n\nVitória sobre a morte no sertão do Ceará\nVitória sobre a morte no sertão do Ceará\nGuerreiro de caatinga tem no peito um carcará\nGuerreiro de caatinga tem no peito um carcará\n\nEu vou bradar caatinga você vai bradar sertão\nEu vou bradar caatinga você vai bradar sertão\nCaatinga! Sertão!\nCaatinga! Sertão!\n\nSob o sol forte do meu sertão\nSob o sol forte do meu sertão\nSurge um combatente com um fuzil na mão\nSurge um combatente com um fuzil na mão\n\nEu não quero água só quero munição\nEu não quero água só quero munição\nEstágio de adaptação caatinga, sertão\nEstágio de adaptação caatinga, sertão`,
+  },
+];

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Puxador de Canções</title>
+        <link rel="icon" href="assets/icone.png" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Ubuntu:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="aviso-topo">
+            ⚠️ Site não oficial. Não possui vínculo com o
+            <strong>Exército Brasileiro</strong> ou qualquer instituição
+            militar. Criado por um civil por pura paixão.
+        </div>
+
+        <header>
+            <h1>PUXADOR<br /><span>DE CANÇÕES</span></h1>
+
+            <div id="hero">
+                <div id="hero-left">
+                    <h3>
+                        Se torne o <span>puxador mais padrão</span> do grupo!
+                    </h3>
+                    <div id="hero-actions">
+                        <a href="#cancoes" id="btn-ver-cancoes">Ver canções</a>
+                    </div>
+                </div>
+
+                <div id="hero-right">
+                    <p>
+                        Conheça as canções de TFM mais vibrantes para puxar e
+                        elevar a moral da sua tropa.
+                    </p>
+                    <div class="search-wrapper">
+                        <svg
+                            class="search-icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                        >
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                        <input
+                            type="text"
+                            id="pesquisa"
+                            placeholder="Buscar canção ou categoria..."
+                            autocomplete="off"
+                        />
+                        <kbd>ctrl + k</kbd>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section id="cancoes">
+                <div class="section-header">
+                    <h2>CANÇÕES</h2>
+                    <span id="contador-cancoes"></span>
+                </div>
+
+                <div class="tags-filtro" id="tags-filtro"></div>
+
+                <div id="lista-cancoes" class="lista-cancoes"></div>
+
+                <div id="sem-resultados" class="sem-resultados hidden">
+                    <span>🔍</span>
+                    <p>
+                        Nenhuma canção encontrada para "<strong
+                            id="termo-sem-resultado"
+                        ></strong
+                        >"
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal de letra completa -->
+        <div
+            id="modal"
+            class="modal hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-titulo"
+        >
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <button
+                    class="modal-close"
+                    id="modal-close"
+                    aria-label="Fechar"
+                >
+                    &times;
+                </button>
+                <div class="modal-tags" id="modal-tags"></div>
+                <h2 id="modal-titulo"></h2>
+                <pre id="modal-letra"></pre>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-inner">
+                <p class="footer-disclaimer">
+                    Este site <strong>não é oficial</strong> e não possui
+                    qualquer vínculo com o <strong>Exército Brasileiro</strong>,
+                    Marinha, Aeronáutica ou qualquer instituição militar
+                    pública. Todo conteúdo foi reunido por um cidadão civil com
+                    fins culturais e educativos.
+                </p>
+                <p class="footer-copy">
+                    Puxador de Canções &copy; 2026 Todos os direitos reservados.
+                </p>
+            </div>
+        </footer>
+
+        <script src="cancoes.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
