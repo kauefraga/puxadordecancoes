@@ -1,4 +1,4 @@
-const cancoes = [
+const songs = [
   {
     id: 1,
     title: 'Demônios Camuflados Surgem da Escuridão',
@@ -82,5 +82,11 @@ const cancoes = [
     title: 'Vitória Sobre a Morte',
     tags: ['caatinga', 'infantaria'],
     lyrics: `Vitória Sobre a Morte\n\nVitória sobre a morte no sertão do Ceará\nVitória sobre a morte no sertão do Ceará\nGuerreiro de caatinga tem no peito um carcará\nGuerreiro de caatinga tem no peito um carcará\n\nEu vou bradar caatinga você vai bradar sertão\nEu vou bradar caatinga você vai bradar sertão\nCaatinga! Sertão!\nCaatinga! Sertão!\n\nSob o sol forte do meu sertão\nSob o sol forte do meu sertão\nSurge um combatente com um fuzil na mão\nSurge um combatente com um fuzil na mão\n\nEu não quero água só quero munição\nEu não quero água só quero munição\nEstágio de adaptação caatinga, sertão\nEstágio de adaptação caatinga, sertão`,
+  },
+  {
+    id: 15,
+    title: 'Somos descendentes dos guerreiros da FEB',
+    tags: ['exército brasileiro', 'artilharia'],
+    lyrics: `Somos descendentes dos guerreiros da FEB\nArtilharia de campanha leve\nArtilharia no terreno vai lançar\nFogos de morteiros pro inimigo não passar\nArtilharia no terreno já lançou\nFogos de morteiros o inimigo não passou\nEu sou da nobre arma cujo tiro mato mil\nSou de artilharia a melhor arma do Brasil\nNa artilharia tudo é perfeito\nQuero ver parar o meu tiro de morteiro`,
   },
 ];

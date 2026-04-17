@@ -1,160 +1,163 @@
 (() => {
-  const inputPesquisa = document.getElementById('pesquisa');
-  const listaCancoes = document.getElementById('lista-cancoes');
-  const semResultados = document.getElementById('sem-resultados');
-  const termoSemResultado = document.getElementById('termo-sem-resultado');
-  const contadorCancoes = document.getElementById('contador-cancoes');
-  const tagsFiltroContainer = document.getElementById('tags-filtro');
+  const searchInput = document.getElementById('pesquisa');
+  const songList = document.getElementById('lista-cancoes');
+  const noResults = document.getElementById('sem-resultados');
+  const noResultsTerm = document.getElementById('termo-sem-resultado');
+  const songCounter = document.getElementById('contador-cancoes');
+  const tagFilterContainer = document.getElementById('tags-filtro');
   const modal = document.getElementById('modal');
-  const modalTitulo = document.getElementById('modal-titulo');
-  const modalLetra = document.getElementById('modal-letra');
+  const modalTitle = document.getElementById('modal-titulo');
+  const modalLyrics = document.getElementById('modal-letra');
   const modalTagsEl = document.getElementById('modal-tags');
   const modalClose = document.getElementById('modal-close');
   const modalBackdrop = modal.querySelector('.modal-backdrop');
 
-  let tagAtiva = null;
+  let activeTag = null;
+
+  // ── Tag slug transformer ─────────────────────────────────────────────────
+  function slugify(tag) {
+    return tag
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-');
+  }
 
   // ── Collect all unique tags ──────────────────────────────────────────────
-  const todasTags = [...new Set(cancoes.flatMap((c) => c.tags))].sort();
+  const allTags = [...new Set(songs.flatMap((s) => s.tags))].sort();
 
   function renderTags() {
-    tagsFiltroContainer.innerHTML = '';
-    const btnTodas = document.createElement('button');
-    btnTodas.className = 'tag-btn' + (tagAtiva === null ? ' ativa' : '');
-    btnTodas.textContent = 'Todas';
-    btnTodas.addEventListener('click', () => {
-      tagAtiva = null;
-      inputPesquisa.value = '';
-      renderCancoes();
-      setTagsAtivas();
-    });
-    tagsFiltroContainer.appendChild(btnTodas);
+    tagFilterContainer.innerHTML = '';
 
-    todasTags.forEach((tag) => {
+    const btnAll = document.createElement('button');
+    btnAll.className = 'tag-btn' + (activeTag === null ? ' ativa' : '');
+    btnAll.textContent = 'Todas';
+    btnAll.dataset.slug = 'todas';
+    btnAll.addEventListener('click', () => {
+      activeTag = null;
+      searchInput.value = '';
+      renderSongs();
+      syncActiveTag();
+    });
+    tagFilterContainer.appendChild(btnAll);
+
+    allTags.forEach((tag) => {
       const btn = document.createElement('button');
-      btn.className = 'tag-btn' + (tagAtiva === tag ? ' ativa' : '');
+      btn.className = 'tag-btn' + (activeTag === tag ? ' ativa' : '');
       btn.textContent = tag;
+      btn.dataset.slug = slugify(tag);
       btn.addEventListener('click', () => {
-        tagAtiva = tagAtiva === tag ? null : tag;
-        inputPesquisa.value = '';
-        renderCancoes();
-        setTagsAtivas();
+        activeTag = activeTag === tag ? null : tag;
+        searchInput.value = '';
+        renderSongs();
+        syncActiveTag();
       });
-      tagsFiltroContainer.appendChild(btn);
+      tagFilterContainer.appendChild(btn);
     });
   }
 
-  function setTagsAtivas() {
-    tagsFiltroContainer.querySelectorAll('.tag-btn').forEach((btn, i) => {
-      if (i === 0) btn.classList.toggle('ativa', tagAtiva === null);
-      else btn.classList.toggle('ativa', btn.textContent === tagAtiva);
+  function syncActiveTag() {
+    tagFilterContainer.querySelectorAll('.tag-btn').forEach((btn, i) => {
+      if (i === 0) btn.classList.toggle('ativa', activeTag === null);
+      else btn.classList.toggle('ativa', btn.textContent === activeTag);
     });
   }
 
   // ── Render songs ─────────────────────────────────────────────────────────
-  function renderCancoes(termo = '') {
-    const termoBusca = termo.trim().toLowerCase();
+  function renderSongs(term = '') {
+    const query = term.trim().toLowerCase();
 
-    let filtradas = cancoes;
-    if (tagAtiva)
-      filtradas = filtradas.filter((c) => c.tags.includes(tagAtiva));
-    if (termoBusca) {
-      filtradas = filtradas.filter(
-        (c) =>
-          c.title.toLowerCase().includes(termoBusca) ||
-          c.lyrics.toLowerCase().includes(termoBusca) ||
-          c.tags.some((t) => t.toLowerCase().includes(termoBusca)),
+    let filtered = songs;
+    if (activeTag)
+      filtered = filtered.filter((s) => s.tags.includes(activeTag));
+    if (query) {
+      filtered = filtered.filter(
+        (s) =>
+          s.title.toLowerCase().includes(query) ||
+          s.lyrics.toLowerCase().includes(query) ||
+          s.tags.some((t) => t.toLowerCase().includes(query)),
       );
     }
 
-    listaCancoes.innerHTML = '';
+    songList.innerHTML = '';
 
-    if (filtradas.length === 0) {
-      semResultados.classList.remove('hidden');
-      termoSemResultado.textContent = termoBusca || tagAtiva || '';
-      contadorCancoes.textContent = '0 canções';
+    if (filtered.length === 0) {
+      noResults.classList.remove('hidden');
+      noResultsTerm.textContent = query || activeTag || '';
+      songCounter.textContent = '0 canções';
       return;
     }
 
-    semResultados.classList.add('hidden');
-    contadorCancoes.textContent = `${filtradas.length} canç${filtradas.length !== 1 ? 'ões' : 'ão'}`;
+    noResults.classList.add('hidden');
+    songCounter.textContent = `${filtered.length} canç${filtered.length !== 1 ? 'ões' : 'ão'}`;
 
-    filtradas.forEach((cancao, index) => {
+    filtered.forEach((song, index) => {
       const card = document.createElement('article');
       card.className = 'cancao-card';
       card.style.animationDelay = `${index * 40}ms`;
 
-      const primeiraEstrofe = cancao.lyrics.split('\n\n')[0];
-      const linhas = primeiraEstrofe.split('\n').slice(0, 4).join('\n');
-      const temMais = cancao.lyrics.split('\n').length > 4;
+      const firstStanza = song.lyrics.split('\n\n')[0];
+      const previewLines = firstStanza.split('\n').slice(0, 4).join('\n');
+      const hasMore = song.lyrics.split('\n').length > 4;
 
       card.innerHTML = `
-        <div class="card-numero">${String(cancao.id).padStart(2, '0')}</div>
+        <div class="card-numero">${String(song.id).padStart(2, '0')}</div>
         <div class="card-body">
-          <h3 class="card-titulo">${cancao.title}</h3>
-          <div class="card-tags">${cancao.tags.map((t) => `<span class="tag">${t}</span>`).join('')}</div>
-          <pre class="card-preview">${linhas}${temMais ? '\n<span class="reticencias">...</span>' : ''}</pre>
+          <h3 class="card-titulo">${song.title}</h3>
+          <div class="card-tags">${song.tags.map((t) => `<span class="tag" data-slug="${slugify(t)}">${t}</span>`).join('')}</div>
+          <pre class="card-preview">${previewLines}${hasMore ? '\n<span class="reticencias">...</span>' : ''}</pre>
         </div>
-        <button class="card-btn-ver" aria-label="Ver letra completa de ${cancao.title}">VER LETRA</button>
+        <button class="card-btn-ver" aria-label="Ver letra completa de ${song.title}">VER LETRA</button>
       `;
 
       card
         .querySelector('.card-btn-ver')
-        .addEventListener('click', () => abrirModal(cancao));
+        .addEventListener('click', () => openModal(song));
       card.addEventListener('click', (e) => {
-        if (!e.target.closest('.card-btn-ver')) abrirModal(cancao);
+        if (!e.target.closest('.card-btn-ver')) openModal(song);
       });
 
-      listaCancoes.appendChild(card);
+      songList.appendChild(card);
     });
   }
 
   // ── Modal ────────────────────────────────────────────────────────────────
-  function abrirModal(cancao) {
-    modalTitulo.textContent = cancao.title;
-    modalLetra.textContent = cancao.lyrics;
-    modalTagsEl.innerHTML = cancao.tags
-      .map((t) => `<span class="tag">${t}</span>`)
+  function openModal(song) {
+    modalTitle.textContent = song.title;
+    modalLyrics.textContent = song.lyrics;
+    modalTagsEl.innerHTML = song.tags
+      .map((t) => `<span class="tag" data-slug="${slugify(t)}">${t}</span>`)
       .join('');
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
     modalClose.focus();
   }
 
-  function fecharModal() {
+  function closeModal() {
     modal.classList.add('hidden');
     document.body.style.overflow = '';
   }
 
-  modalClose.addEventListener('click', fecharModal);
-  modalBackdrop.addEventListener('click', fecharModal);
+  modalClose.addEventListener('click', closeModal);
+  modalBackdrop.addEventListener('click', closeModal);
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !modal.classList.contains('hidden'))
-      fecharModal();
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
   });
 
   // ── Search ───────────────────────────────────────────────────────────────
-  let searchFocused = false;
-
-  inputPesquisa.addEventListener('input', () => {
-    tagAtiva = null;
-    setTagsAtivas();
-    renderCancoes(inputPesquisa.value);
+  searchInput.addEventListener('input', () => {
+    activeTag = null;
+    syncActiveTag();
+    renderSongs(searchInput.value);
   });
 
-  inputPesquisa.addEventListener('focus', () => {
-    searchFocused = true;
-  });
-  inputPesquisa.addEventListener('blur', () => {
-    searchFocused = false;
-  });
-
-  inputPesquisa.addEventListener('keydown', (e) => {
+  searchInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      const secao = document.getElementById('cancoes');
-      secao.scrollIntoView({ behavior: 'smooth' });
-      renderCancoes(inputPesquisa.value);
+      document.getElementById('cancoes').scrollIntoView({ behavior: 'smooth' });
+      renderSongs(searchInput.value);
     }
   });
 
@@ -162,22 +165,22 @@
   document.addEventListener('keydown', (e) => {
     if (e.ctrlKey && e.key === 'k') {
       e.preventDefault();
-      if (document.activeElement === inputPesquisa) {
-        inputPesquisa.blur();
+      if (document.activeElement === searchInput) {
+        searchInput.blur();
       } else {
-        inputPesquisa.focus();
-        inputPesquisa.select();
+        searchInput.focus();
+        searchInput.select();
       }
     }
   });
 
-  // ── "Ver canções" button ──────────────────────────────────────────────────
+  // ── "Ver canções" button ─────────────────────────────────────────────────
   document.getElementById('btn-ver-cancoes').addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('cancoes').scrollIntoView({ behavior: 'smooth' });
   });
 
-  // ── Init ──────────────────────────────────────────────────────────────────
+  // ── Init ─────────────────────────────────────────────────────────────────
   renderTags();
-  renderCancoes();
+  renderSongs();
 })();

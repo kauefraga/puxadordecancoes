@@ -3,7 +3,24 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Puxador de Canções</title>
+        <title>
+            Puxador de Canções | Letras de Canções Militares do Exército
+            Brasileiro
+        </title>
+        <meta
+            name="description"
+            content="Acervo completo de canções militares de TFM do Exército Brasileiro. Letras de canções de infantaria, caveira, comandos, caatinga, selva e muito mais. Seja o puxador mais padrão da sua tropa."
+        />
+        <meta
+            name="keywords"
+            content="canções militares, canções de TFM, puxador de canções, canções do exército, letras militares, canções de infantaria, caveira, comandos, caatinga, selva, tropa, TFM, treinamento físico militar, canção militar brasileira"
+        />
+        <meta name="author" content="Puxador de Canções" />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="pt-BR" />
+        <link rel="canonical" href="https://puxadordecancoes.com.br/" />
+
+        <meta name="theme-color" content="#606c38" />
         <link rel="icon" href="assets/icone.png" />
         <link rel="stylesheet" href="style.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,12 +29,32 @@
             href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Ubuntu:wght@400;500;700&display=swap"
             rel="stylesheet"
         />
+
+        <!-- JSON-LD Structured Data -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Puxador de Canções",
+                "url": "https://puxadordecancoes.com.br/",
+                "description": "Acervo completo de canções militares de TFM do Exército Brasileiro.",
+                "inLanguage": "pt-BR",
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": {
+                        "@type": "EntryPoint",
+                        "urlTemplate": "https://puxadordecancoes.com.br/?q={search_term_string}"
+                    },
+                    "query-input": "required name=search_term_string"
+                }
+            }
+        </script>
     </head>
     <body>
         <div class="aviso-topo">
             ⚠️ Site não oficial. Não possui vínculo com o
             <strong>Exército Brasileiro</strong> ou qualquer instituição
-            militar. Criado por um civil por pura paixão.
+            militar.
         </div>
 
         <header>
@@ -25,11 +62,14 @@
 
             <div id="hero">
                 <div id="hero-left">
-                    <h3>
+                    <h2>
                         Se torne o <span>puxador mais padrão</span> do grupo!
-                    </h3>
+                    </h2>
                     <div id="hero-actions">
                         <a href="#cancoes" id="btn-ver-cancoes">Ver canções</a>
+                        <a href="/guia.html" id="btn-como-puxar"
+                            >Como puxar canção</a
+                        >
                     </div>
                 </div>
 

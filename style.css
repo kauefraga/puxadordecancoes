@@ -106,7 +106,7 @@ header h1 span {
   flex-wrap: wrap;
 }
 
-#hero-left h3 {
+#hero-left h2 {
   font-family: 'Oswald', sans-serif;
   font-size: 2.2rem;
   font-weight: 500;
@@ -115,7 +115,7 @@ header h1 span {
   letter-spacing: 0.01em;
 }
 
-#hero-left h3 span {
+#hero-left h2 span {
   text-decoration: underline;
   text-decoration-color: var(--sunlit-clay);
   text-underline-offset: 6px;
